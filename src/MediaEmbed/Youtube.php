@@ -16,12 +16,16 @@ class Youtube extends Media
 
     protected $alias = 'youtube';
 
-    public function getSize()
+    public function setSize($width = null, $height = null)
     {
         $this->setWidth(self::MEDIA_WIDTH);
         $this->setHeight(self::MEDIA_HEIGHT);
-        return ['width' => $this->width, 'height' => $this->height];
+        if ($width && $height) {
+            $this->setWidth($width);
+            $this->setHeight($height);
+        }
     }
+
 
     public function getHTML()
     {

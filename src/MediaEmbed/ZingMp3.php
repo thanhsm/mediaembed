@@ -33,7 +33,7 @@ class ZingMp3 extends Media
         return false;
     }
 
-    public function getSize()
+    public function setSize($width = null, $height = null)
     {
         switch ($this->getType()) {
             case self::SONG:
@@ -49,7 +49,10 @@ class ZingMp3 extends Media
                 $this->setHeight(self::VIDEO_HEIGHT);
                 break;
         }
-        return ['width' => $this->width, 'height' => $this->height];
+        if ($width && $height) {
+            $this->setWidth($width);
+            $this->setHeight($height);
+        }
     }
 
     public function getHTML()
