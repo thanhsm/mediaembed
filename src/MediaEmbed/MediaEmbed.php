@@ -28,14 +28,17 @@ class MediaEmbed
     const SONG = 'song';
     const VIDEO = 'video';
 
+    private static $content;
+    private static $provider;
+
     public static function process($input)
     {
-        $content = self::parseLink($input);
-        $provider = static::searchProvider($content);
-        return ['provider' => $provider, 'content' => $content];
+        self::setContent(static::parseLink($input));
+        self::setProvider(static::searchProvider(self::$content));
+        return new static;
     }
 
-    protected function parseLink($string)
+    protected static function parseLink($string)
     {
         $string = nl2br($string);
         /*** make sure there is an http:// on all URLs ***/
@@ -47,7 +50,7 @@ class MediaEmbed
         return $string;
     }
 
-    protected function searchProvider($content)
+    protected static function searchProvider($content)
     {
         preg_match('/\b(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)[-A-Z0-9+&@#\/%=~_|$?!:,.]*[A-Z0-9+&@#\/%=~_|$]/i', $content, $url);
         // Only allow embed one object
@@ -102,5 +105,42 @@ class MediaEmbed
             }
         }
         return null;
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getContent()
+    {
+        return self::$content;
+    }
+
+    /**
+     * @param mixed $content
+     */
+    public static function setContent($content)
+    {
+        self::$content = $content;
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getProvider()
+    {
+        return self::$provider;
+    }
+
+    /**
+     * @param mixed $provider
+     */
+    public static function setProvider($provider)
+    {
+        self::$provider = $provider;
+    }
+
+    public static function hasMedia()
+    {
+        return (boolean)self::$provider;
     }
 }
