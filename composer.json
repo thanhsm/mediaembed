@@ -1,6 +1,9 @@
 {
     "name": "thanhsm/mediaembed",
     "description": "Generate media embed from NTC, Zing Mp3, Youtube",
+    "keyword" : [
+        "media embed", "media", "zing mp3", "ntc", "youtube"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -8,6 +11,7 @@
             "email": "thanhsm93@gmail.com"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0"
     },
