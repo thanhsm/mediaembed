@@ -9,6 +9,7 @@ class Media
 
     private $mediaId;
     private $mediaType;
+
     protected $alias;
 
     public function __construct($mediaId, $mediaType)
@@ -61,7 +62,11 @@ class Media
 
     public function getMediaData()
     {
-        return ['provider' => $this->getProviderName(), 'embed_type' => $this->getEmbedType()] + $this->getMediaSize();
+        return [
+            'provider' => $this->getProviderName(),
+            'embed_type' => $this->getEmbedType(),
+            'id' => $this->getMediaId()
+            ] + $this->getMediaSize();
     }
 
     public function getProviderName()
