@@ -23,7 +23,7 @@ Get get parsed content
 ```
 $contentProcessed = $content->getContent();
 ```
-Example http://youtube.com will become <a href="http://youtube.com">youtube.com</a>;
+Example ```http://youtube.com```  will become ```<a href="http://youtube.com">youtube.com</a>```
 
 Check media object in content
 ```
