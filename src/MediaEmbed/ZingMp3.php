@@ -18,7 +18,7 @@ class ZingMp3 extends Media
     const VIDEO_WIDTH = 460;
     const VIDEO_HEIGHT = 362;
 
-    private $alias ='mp3';
+    protected $alias = 'mp3';
 
     public function getEmbedType()
     {
