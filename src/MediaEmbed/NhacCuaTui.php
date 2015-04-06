@@ -18,6 +18,8 @@ class NhacCuaTui extends Media
     const VIDEO_WIDTH = 460;
     const VIDEO_HEIGHT = 362;
 
+    private $alias = 'ntc';
+
     public function getEmbedType()
     {
         switch ($this->getMediaType()) {
@@ -43,5 +45,6 @@ class NhacCuaTui extends Media
         }
         return false;
     }
+
 
 }
