@@ -37,12 +37,23 @@ class ZingMp3 extends Media
     {
         switch ($this->getMediaType()) {
             case self::SONG:
-                return ['width' => self::SONG_WIDTH, 'height' => self::SONG_HEIGHT];
+                $this->setWidth(self::SONG_WIDTH);
+                $this->setHeight(self::SONG_HEIGHT);
+                break;
             case self::PLAYLIST:
-                return ['width' => self::PLAYLIST_WIDTH, 'height' => self::PLAYLIST_HEIGHT];
+                $this->setWidth(self::PLAYLIST_WIDTH);
+                $this->setHeight(self::PLAYLIST_HEIGHT);
+                break;
             case self::VIDEO:
-                return ['width' => self::VIDEO_WIDTH, 'height' => self::VIDEO_HEIGHT];
+                $this->setWidth(self::VIDEO_WIDTH);
+                $this->setHeight(self::VIDEO_HEIGHT);
+                break;
         }
-        return false;
+        return ['width' => $this->width, 'height' => $this->height];
+    }
+
+    public function getHTML()
+    {
+        return '<iframe width="' . $this->width . '" height="' . $this->height . '" src="https://www.youtube.com/embed/' . $this->getMediaId() . '" frameborder="0" allowfullscreen="true"></iframe>';
     }
 }
