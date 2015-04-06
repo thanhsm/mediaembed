@@ -11,14 +11,16 @@ class Media
     private $mediaType;
 
     protected $alias;
-
-    protected $width = 460;
-    protected $height = 345;
+    protected $width;
+    protected $height;
 
     public function __construct($mediaId, $mediaType)
     {
         $this->mediaId = $mediaId;
         $this->mediaType = $mediaType;
+        if ($this->getType() && (is_null($this->width) || is_null($this->height))) {
+            $this->setSize();
+        }
     }
 
     /**
@@ -58,9 +60,14 @@ class Media
         return null;
     }
 
-    public function getSize()
+    public function setSize()
     {
         return null;
+    }
+
+    public function getSize()
+    {
+        return ['width' => $this->width, 'height' => $this->height];
     }
 
     public function getData()

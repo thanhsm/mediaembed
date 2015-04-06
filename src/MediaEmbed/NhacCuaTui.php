@@ -35,7 +35,7 @@ class NhacCuaTui extends Media
         return false;
     }
 
-    public function getSize()
+    public function setSize()
     {
         switch ($this->getType()) {
             case self::SONG:
@@ -51,7 +51,6 @@ class NhacCuaTui extends Media
                 $this->setHeight(self::VIDEO_HEIGHT);
                 break;
         }
-        return ['width' => $this->width, 'height' => $this->height];
     }
 
     public function getHTML()
