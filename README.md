@@ -1,5 +1,13 @@
 # Media Embed
 Mp3, NTC, Youtube media embed
+# Installation
+Add line
+```json
+"require": {
+    "thanhsm/mediaembed": "dev-master"
+  }
+  ```
+To composer.json in your project and then run ```composer update```
 
 # How to use ?
 Input:
@@ -27,7 +35,8 @@ $media = $content->getMediaProvider();
 ```
 You can set media width/height simple by
 ```
-$media->setWidth(200); //pixcel
+//pixel
+$media->setWidth(200); 
 $media->setHeight(100);
 ```
 Get Media Size
@@ -38,6 +47,9 @@ Get embed object(HTML)
 ```
 $media->getHTML();
 ```
+Output
+```<iframe width="200" height="100" src="http://mp3.zing.vn/embed/song/ZW70UWO6?autostart=false" frameborder="0" allowfullscreen="true"></iframe>```
+
 Get all media data
 ```
 $data = $media->getData();
@@ -52,7 +64,7 @@ $data = [
     'provider' => 'mp3',
     'embed_type' => 'song',
     'id' => ZW70UWO6,
-    'html' => '<iframe width="460" height="100" src="http://mp3.zing.vn/embed/song/ZW70UWO6?autostart=false" frameborder="0" allowfullscreen="true"></iframe>',
+    'html' => '<iframe width="200" height="100" src="http://mp3.zing.vn/embed/song/ZW70UWO6?autostart=false" frameborder="0" allowfullscreen="true"></iframe>',
     'with' => default width,
     'height' => default height
 ];
