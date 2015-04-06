@@ -14,7 +14,7 @@ class Youtube extends Media
     const MEDIA_WIDTH = 460;
     const MEDIA_HEIGHT = 345;
 
-    private $alias ='youtube';
+    protected $alias = 'youtube';
 
     public function getMediaSize()
     {

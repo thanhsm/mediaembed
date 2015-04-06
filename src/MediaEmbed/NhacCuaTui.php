@@ -18,7 +18,7 @@ class NhacCuaTui extends Media
     const VIDEO_WIDTH = 460;
     const VIDEO_HEIGHT = 362;
 
-    private $alias = 'ntc';
+    protected $alias = 'ntc';
 
     public function getEmbedType()
     {

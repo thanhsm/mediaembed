@@ -138,7 +138,7 @@ class MediaEmbed
     {
         self::$provider = $provider;
     }
-    
+
     public static function hasMedia()
     {
         return (boolean)self::$provider;

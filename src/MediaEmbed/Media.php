@@ -9,7 +9,7 @@ class Media
 
     private $mediaId;
     private $mediaType;
-    private $alias;
+    protected $alias;
 
     public function __construct($mediaId, $mediaType)
     {
