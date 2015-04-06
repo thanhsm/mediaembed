@@ -16,7 +16,7 @@ class Youtube extends Media
 
     protected $alias = 'youtube';
 
-    public function getMediaSize()
+    public function getSize()
     {
         $this->setWidth(self::MEDIA_WIDTH);
         $this->setHeight(self::MEDIA_HEIGHT);
@@ -25,7 +25,7 @@ class Youtube extends Media
 
     public function getHTML()
     {
-        return '<iframe width="' . $this->width . '" height="' . $this->height . '" src="http://mp3.zing.vn/embed/' . $this->getEmbedType() . '/' . $this->getMediaId() . '?autostart=false" frameborder="0" allowfullscreen="true"></iframe>';
+        return '<iframe width="' . $this->width . '" height="' . $this->height . '" src="http://mp3.zing.vn/embed/' . $this->getEmbedType() . '/' . $this->getId() . '?autostart=false" frameborder="0" allowfullscreen="true"></iframe>';
     }
 
 }
