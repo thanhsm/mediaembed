@@ -13,8 +13,10 @@ class NhacCuaTui extends Media
 {
     const SONG_WIDTH = 460;
     const SONG_HEIGHT = 286;
+
     const PLAYLIST_WIDTH = 460;
     const PLAYLIST_HEIGHT = 286;
+
     const VIDEO_WIDTH = 460;
     const VIDEO_HEIGHT = 362;
 
@@ -37,14 +39,32 @@ class NhacCuaTui extends Media
     {
         switch ($this->getMediaType()) {
             case self::SONG:
-                return ['width' => self::SONG_WIDTH, 'height' => self::SONG_HEIGHT];
+                $this->setWidth(self::SONG_WIDTH);
+                $this->setHeight(self::SONG_HEIGHT);
+                break;
             case self::PLAYLIST:
-                return ['width' => self::PLAYLIST_WIDTH, 'height' => self::PLAYLIST_HEIGHT];
+                $this->setWidth(self::PLAYLIST_WIDTH);
+                $this->setHeight(self::PLAYLIST_HEIGHT);
+                break;
             case self::VIDEO:
-                return ['width' => self::VIDEO_WIDTH, 'height' => self::VIDEO_HEIGHT];
+                $this->setWidth(self::VIDEO_WIDTH);
+                $this->setHeight(self::VIDEO_HEIGHT);
+                break;
         }
-        return false;
+        return ['width' => $this->width, 'height' => $this->height];
     }
 
-
+    public function getHTML()
+    {
+        $html = '<object width="' . $this->width . '" height="' . $this->height . '">';
+        $html .= '<param name="movie" value="http://www.nhaccuatui.com/m/' . $this->getMediaId() . '"/>';
+        $html .= '<param name="quality" value="high"/>';
+        $html .= '<param name="wmode" value="transparent"/>';
+        $html .= '<param name="allowscriptaccess" value="always"/>';
+        $html .= '<param name="allowfullscreen" value="true"/>';
+        $html .= '<param name="flashvars" value="autostart=false"/>';
+        $html .= '<embed src="http://www.nhaccuatui.com/' . $this->getEmbedType() . '/' . $this->getMediaId() . '" flashvars="target=blank&autostart=false" allowscriptaccess="always" allowfullscreen="true" quality="high" wmode="transparent" type="application/x-shockwave-flash" width="' . $this->width . '" height="' . $this->height . '">';
+        $html .= '</object>';
+        return $html;
+    }
 }

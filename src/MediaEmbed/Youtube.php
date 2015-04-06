@@ -18,6 +18,14 @@ class Youtube extends Media
 
     public function getMediaSize()
     {
-        return ['width' => self::MEDIA_WIDTH, 'height' => self::MEDIA_HEIGHT];
+        $this->setWidth(self::MEDIA_WIDTH);
+        $this->setHeight(self::MEDIA_HEIGHT);
+        return ['width' => $this->width, 'height' => $this->height];
     }
+
+    public function getHTML()
+    {
+        return '<iframe width="' . $this->width . '" height="' . $this->height . '" src="http://mp3.zing.vn/embed/' . $this->getEmbedType() . '/' . $this->getMediaId() . '?autostart=false" frameborder="0" allowfullscreen="true"></iframe>';
+    }
+
 }

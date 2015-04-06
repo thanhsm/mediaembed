@@ -12,6 +12,9 @@ class Media
 
     protected $alias;
 
+    protected $width = 460;
+    protected $height = 345;
+
     public function __construct($mediaId, $mediaType)
     {
         $this->mediaId = $mediaId;
@@ -65,12 +68,67 @@ class Media
         return [
             'provider' => $this->getProviderName(),
             'embed_type' => $this->getEmbedType(),
-            'id' => $this->getMediaId()
-            ] + $this->getMediaSize();
+            'id' => $this->getMediaId(),
+            'html' => $this->getHTML()
+        ] + $this->getMediaSize();
     }
 
     public function getProviderName()
     {
         return $this->alias;
     }
+
+    public function getHTML()
+    {
+        return null;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * @param mixed $alias
+     */
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
+    }
+
+    /**
+     * @return int
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * @param int $width
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * @param int $height
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
+    }
+
 }
