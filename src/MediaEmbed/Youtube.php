@@ -25,7 +25,7 @@ class Youtube extends Media
 
     public function getHTML()
     {
-        return '<iframe width="' . $this->width . '" height="' . $this->height . '" src="http://mp3.zing.vn/embed/' . $this->getEmbedType() . '/' . $this->getId() . '?autostart=false" frameborder="0" allowfullscreen="true"></iframe>';
+        return '<iframe width="' . $this->width . '" height="' . $this->height . '" src="https://www.youtube.com/embed/' . $this->getId() . '" frameborder="0" allowfullscreen="true"></iframe>';
     }
 
 }
