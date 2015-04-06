@@ -126,7 +126,7 @@ class MediaEmbed
     /**
      * @return mixed
      */
-    public static function getProvider()
+    public static function getMediaProvider()
     {
         return self::$provider;
     }

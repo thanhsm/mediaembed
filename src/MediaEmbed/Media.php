@@ -24,7 +24,7 @@ class Media
     /**
      * @return mixed
      */
-    public function getMediaId()
+    public function getId()
     {
         return $this->mediaId;
     }
@@ -32,7 +32,7 @@ class Media
     /**
      * @param mixed $mediaId
      */
-    public function setMediaId($mediaId)
+    public function setId($mediaId)
     {
         $this->mediaId = $mediaId;
     }
@@ -40,7 +40,7 @@ class Media
     /**
      * @return mixed
      */
-    public function getMediaType()
+    public function getType()
     {
         return $this->mediaType;
     }
@@ -48,7 +48,7 @@ class Media
     /**
      * @param mixed $mediaType
      */
-    public function setMediaType($mediaType)
+    public function setType($mediaType)
     {
         $this->mediaType = $mediaType;
     }
@@ -58,19 +58,19 @@ class Media
         return null;
     }
 
-    public function getMediaSize()
+    public function getSize()
     {
         return null;
     }
 
-    public function getMediaData()
+    public function getData()
     {
         return [
             'provider' => $this->getProviderName(),
             'embed_type' => $this->getEmbedType(),
-            'id' => $this->getMediaId(),
+            'id' => $this->getId(),
             'html' => $this->getHTML()
-        ] + $this->getMediaSize();
+        ] + $this->getSize();
     }
 
     public function getProviderName()

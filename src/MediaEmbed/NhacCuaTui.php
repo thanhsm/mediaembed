@@ -24,7 +24,7 @@ class NhacCuaTui extends Media
 
     public function getEmbedType()
     {
-        switch ($this->getMediaType()) {
+        switch ($this->getType()) {
             case self::SONG:
                 return 'm';
             case self::PLAYLIST:
@@ -35,9 +35,9 @@ class NhacCuaTui extends Media
         return false;
     }
 
-    public function getMediaSize()
+    public function getSize()
     {
-        switch ($this->getMediaType()) {
+        switch ($this->getType()) {
             case self::SONG:
                 $this->setWidth(self::SONG_WIDTH);
                 $this->setHeight(self::SONG_HEIGHT);
@@ -57,13 +57,13 @@ class NhacCuaTui extends Media
     public function getHTML()
     {
         $html = '<object width="' . $this->width . '" height="' . $this->height . '">';
-        $html .= '<param name="movie" value="http://www.nhaccuatui.com/m/' . $this->getMediaId() . '"/>';
+        $html .= '<param name="movie" value="http://www.nhaccuatui.com/m/' . $this->getId() . '"/>';
         $html .= '<param name="quality" value="high"/>';
         $html .= '<param name="wmode" value="transparent"/>';
         $html .= '<param name="allowscriptaccess" value="always"/>';
         $html .= '<param name="allowfullscreen" value="true"/>';
         $html .= '<param name="flashvars" value="autostart=false"/>';
-        $html .= '<embed src="http://www.nhaccuatui.com/' . $this->getEmbedType() . '/' . $this->getMediaId() . '" flashvars="target=blank&autostart=false" allowscriptaccess="always" allowfullscreen="true" quality="high" wmode="transparent" type="application/x-shockwave-flash" width="' . $this->width . '" height="' . $this->height . '">';
+        $html .= '<embed src="http://www.nhaccuatui.com/' . $this->getEmbedType() . '/' . $this->getId() . '" flashvars="target=blank&autostart=false" allowscriptaccess="always" allowfullscreen="true" quality="high" wmode="transparent" type="application/x-shockwave-flash" width="' . $this->width . '" height="' . $this->height . '">';
         $html .= '</object>';
         return $html;
     }
