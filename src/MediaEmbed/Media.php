@@ -60,7 +60,7 @@ class Media
         return null;
     }
 
-    public function setSize()
+    public function setSize($width = null, $height = null)
     {
         return null;
     }

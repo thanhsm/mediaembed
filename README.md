@@ -36,8 +36,9 @@ $media = $content->getMediaProvider();
 You can set media width/height simple by
 ```
 //pixel
-$media->setWidth(200); 
+$media->setWidth(200);
 $media->setHeight(100);
+$media->setSize(200, 100);
 ```
 Get Media Size
 ```
