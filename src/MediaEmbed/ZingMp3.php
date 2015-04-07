@@ -9,17 +9,32 @@
 namespace MediaEmbed;
 
 
+/**
+ * Class ZingMp3
+ * @package MediaEmbed
+ */
 class ZingMp3 extends Media
 {
-    const SONG_WIDTH = 460;
-    const SONG_HEIGHT = 100;
-    const PLAYLIST_WIDTH = 460;
-    const PLAYLIST_HEIGHT = 225;
-    const VIDEO_WIDTH = 460;
-    const VIDEO_HEIGHT = 362;
 
+    protected $songWidth = 460;
+    protected $songHeight = 100;
+
+    protected $playlistWidth = 460;
+    protected $playlistHeight = 225;
+
+    protected $videoWidth = 460;
+    protected $videoHeight = 362;
+
+    /**
+     * Provider Alias
+     * @var string
+     */
     protected $alias = 'mp3';
 
+    /**
+     * Get type of embed in url path
+     * @return bool|string
+     */
     public function getEmbedType()
     {
         switch ($this->getType()) {
@@ -33,30 +48,13 @@ class ZingMp3 extends Media
         return false;
     }
 
-    public function setSize($width = null, $height = null)
-    {
-        switch ($this->getType()) {
-            case self::SONG:
-                $this->setWidth(self::SONG_WIDTH);
-                $this->setHeight(self::SONG_HEIGHT);
-                break;
-            case self::PLAYLIST:
-                $this->setWidth(self::PLAYLIST_WIDTH);
-                $this->setHeight(self::PLAYLIST_HEIGHT);
-                break;
-            case self::VIDEO:
-                $this->setWidth(self::VIDEO_WIDTH);
-                $this->setHeight(self::VIDEO_HEIGHT);
-                break;
-        }
-        if ($width && $height) {
-            $this->setWidth($width);
-            $this->setHeight($height);
-        }
-    }
-
+    /**
+     * Get embed code
+     * @return string
+     */
     public function getHTML()
     {
         return '<iframe width="' . $this->width . '" height="' . $this->height . '" src="http://mp3.zing.vn/embed/' . $this->getEmbedType() . '/' . $this->getId() . '?autostart=false" frameborder="0" allowfullscreen="true"></iframe>';
     }
+
 }

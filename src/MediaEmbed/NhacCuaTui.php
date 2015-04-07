@@ -9,19 +9,32 @@
 namespace MediaEmbed;
 
 
+/**
+ * Class NhacCuaTui
+ * @package MediaEmbed
+ */
 class NhacCuaTui extends Media
 {
-    const SONG_WIDTH = 460;
-    const SONG_HEIGHT = 286;
 
-    const PLAYLIST_WIDTH = 460;
-    const PLAYLIST_HEIGHT = 286;
+    protected $songWidth = 460;
+    protected $songHeight = 286;
 
-    const VIDEO_WIDTH = 460;
-    const VIDEO_HEIGHT = 362;
+    protected $playlistWidth = 460;
+    protected $playlistHeight = 286;
 
+    protected $videoWidth = 460;
+    protected $videoHeight = 362;
+
+    /**
+     * Alias
+     * @var string
+     */
     protected $alias = 'ntc';
 
+    /**
+     * Get embed type path
+     * @return bool|string
+     */
     public function getEmbedType()
     {
         switch ($this->getType()) {
@@ -35,28 +48,10 @@ class NhacCuaTui extends Media
         return false;
     }
 
-    public function setSize($width = null, $height = null)
-    {
-        switch ($this->getType()) {
-            case self::SONG:
-                $this->setWidth(self::SONG_WIDTH);
-                $this->setHeight(self::SONG_HEIGHT);
-                break;
-            case self::PLAYLIST:
-                $this->setWidth(self::PLAYLIST_WIDTH);
-                $this->setHeight(self::PLAYLIST_HEIGHT);
-                break;
-            case self::VIDEO:
-                $this->setWidth(self::VIDEO_WIDTH);
-                $this->setHeight(self::VIDEO_HEIGHT);
-                break;
-        }
-        if ($width && $height) {
-            $this->setWidth($width);
-            $this->setHeight($height);
-        }
-    }
-
+    /**
+     * Get HTML embed code
+     * @return string
+     */
     public function getHTML()
     {
         $html = '<object width="' . $this->width . '" height="' . $this->height . '">';
