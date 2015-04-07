@@ -6,7 +6,7 @@
  * Time: 10:05
  */
 
-namespace MediaEmbed\Media;
+namespace MediaEmbed;
 
 
 class ZingMp3 extends Media

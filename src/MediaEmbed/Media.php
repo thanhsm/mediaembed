@@ -1,5 +1,6 @@
 <?php
-namespace MediaEmbed\Media;
+
+namespace MediaEmbed;
 
 class Media
 {

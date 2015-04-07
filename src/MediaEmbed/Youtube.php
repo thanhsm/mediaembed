@@ -6,7 +6,7 @@
  * Time: 10:10
  */
 
-namespace MediaEmbed\Media;
+namespace MediaEmbed;
 
 
 class Youtube extends Media

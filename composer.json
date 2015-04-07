@@ -22,5 +22,8 @@
         "psr-4": {
             "MediaEmbed\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "classmap": [ "tests" ]
     }
 }
