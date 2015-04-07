@@ -6,7 +6,7 @@
  * Time: 10:11
  */
 
-namespace MediaEmbed\Media;
+namespace MediaEmbed;
 
 
 class MediaEmbed

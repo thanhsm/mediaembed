@@ -6,7 +6,7 @@
  * Time: 10:09
  */
 
-namespace MediaEmbed\Media;
+namespace MediaEmbed;
 
 
 class NhacCuaTui extends Media
