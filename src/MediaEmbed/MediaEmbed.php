@@ -31,10 +31,23 @@ class MediaEmbed
     private static $content;
     private static $provider;
 
+    public function __construct($input = null)
+    {
+        if ($input) {
+            $this->setContent($this->parseLink($input));
+            $this->setProvider($this->searchProvider($this->getContent()));
+        }
+    }
+
+    private function __clone()
+    {
+
+    }
+
     public static function process($input)
     {
         self::setContent(static::parseLink($input));
-        self::setProvider(static::searchProvider(self::$content));
+        self::setProvider(static::searchProvider(self::getContent()));
         return new static;
     }
 
@@ -54,55 +67,56 @@ class MediaEmbed
     {
         preg_match('/\b(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)[-A-Z0-9+&@#\/%=~_|$?!:,.]*[A-Z0-9+&@#\/%=~_|$]/i', $content, $url);
         // Only allow embed one object
-        if (isset($url[0])) {
-            $urlInfo = parse_url($url[0]);
-            if (isset($urlInfo['host']) && $urlInfo['host'] == self::ZING_MP3_HOST) {
-                $path = pathinfo($urlInfo['path']);
-                $allowMediaPaths = ['video-clip', 'bai-hat', 'playlist', 'album'];
-                $urlPaths = explode('/', $path['dirname']);
-                $isPlaylist = array_intersect($urlPaths, ['playlist']);
-                $isAlbum = array_intersect($urlPaths, ['album']);
-                $isVideo = array_intersect($urlPaths, ['video-clip']);
-                $match = array_intersect($allowMediaPaths, $urlPaths);
-                $mediaId = $path['filename'];
-                if ($match && strlen($mediaId) === self::ZING_MP3_ID_LENGTH) {
-                    if ($isPlaylist || $isAlbum) {
-                        $type = self::PLAYLIST;
-                    } elseif ($isVideo) {
-                        $type = self::VIDEO;
-                    } else {
-                        $type = self::SONG;
-                    }
-                    return new ZingMp3($mediaId, $type);
-                }
-            }
-            if (isset($urlInfo['host']) && $urlInfo['host'] == self::NTC_HOST) {
-                $path = pathinfo($urlInfo['path']);
-                $allowMediaPaths = ['video', 'bai-hat', 'playlist'];
-                $urlPaths = explode('/', $path['dirname']);
-                $isPlaylist = array_intersect($urlPaths, ['playlist']);
-                $isVideo = array_intersect($urlPaths, ['video']);
-                $match = array_intersect($allowMediaPaths, $urlPaths);
-                $mediaId = explode('.', $path['filename'])[1];
-                if ($isVideo && $match && strlen($mediaId) == self::NTC_VIDEO_ID_LENGTH) {
+        if (!isset($url[0])) {
+            return null;
+        }
+        $urlInfo = parse_url($url[0]);
+        if (isset($urlInfo['host']) && $urlInfo['host'] == self::ZING_MP3_HOST) {
+            $path = pathinfo($urlInfo['path']);
+            $allowMediaPaths = ['video-clip', 'bai-hat', 'playlist', 'album'];
+            $urlPaths = explode('/', $path['dirname']);
+            $isPlaylist = array_intersect($urlPaths, ['playlist']);
+            $isAlbum = array_intersect($urlPaths, ['album']);
+            $isVideo = array_intersect($urlPaths, ['video-clip']);
+            $match = array_intersect($allowMediaPaths, $urlPaths);
+            $mediaId = $path['filename'];
+            if ($match && strlen($mediaId) === self::ZING_MP3_ID_LENGTH) {
+                if ($isPlaylist || $isAlbum) {
+                    $type = self::PLAYLIST;
+                } elseif ($isVideo) {
                     $type = self::VIDEO;
-                    return new NhacCuaTui($mediaId, $type);
+                } else {
+                    $type = self::SONG;
                 }
-                if ($match && strlen($mediaId) === self::NTC_SONG_ID_LENGTH) {
-                    if ($isPlaylist) {
-                        $type = self::PLAYLIST;
-                    } else {
-                        $type = self::SONG;
-                    }
-                    return new NhacCuaTui($mediaId, $type);
-                }
+                return new ZingMp3($mediaId, $type);
             }
-            preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $content, $matches);
-            if (isset($matches[1]) && $matches[1] != 'www.youtube') {
-                $videoId = $matches[1];
+        }
+        if (isset($urlInfo['host']) && $urlInfo['host'] == self::NTC_HOST) {
+            $path = pathinfo($urlInfo['path']);
+            $allowMediaPaths = ['video', 'bai-hat', 'playlist'];
+            $urlPaths = explode('/', $path['dirname']);
+            $isPlaylist = array_intersect($urlPaths, ['playlist']);
+            $isVideo = array_intersect($urlPaths, ['video']);
+            $match = array_intersect($allowMediaPaths, $urlPaths);
+            $mediaId = explode('.', $path['filename'])[1];
+            if ($isVideo && $match && strlen($mediaId) == self::NTC_VIDEO_ID_LENGTH) {
                 $type = self::VIDEO;
-                return new Youtube($videoId, $type);
+                return new NhacCuaTui($mediaId, $type);
             }
+            if ($match && strlen($mediaId) === self::NTC_SONG_ID_LENGTH) {
+                if ($isPlaylist) {
+                    $type = self::PLAYLIST;
+                } else {
+                    $type = self::SONG;
+                }
+                return new NhacCuaTui($mediaId, $type);
+            }
+        }
+        preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $content, $matches);
+        if (isset($matches[1]) && $matches[1] != 'www.youtube') {
+            $videoId = $matches[1];
+            $type = self::VIDEO;
+            return new Youtube($videoId, $type);
         }
         return null;
     }

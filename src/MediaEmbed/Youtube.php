@@ -9,24 +9,40 @@
 namespace MediaEmbed;
 
 
+/**
+ * Class Youtube
+ * @package MediaEmbed
+ */
 class Youtube extends Media
 {
-    const MEDIA_WIDTH = 460;
-    const MEDIA_HEIGHT = 345;
+    /**
+     * @var int
+     */
+    protected $videoWidth = 460;
+    /**
+     * @var int
+     */
+    protected $videoHeight = 345;
 
+    /**
+     * Provider Alias
+     * @var string
+     */
     protected $alias = 'youtube';
 
-    public function setSize($width = null, $height = null)
+    /**
+     * Initialize default size
+     */
+    public function initSize()
     {
-        $this->setWidth(self::MEDIA_WIDTH);
-        $this->setHeight(self::MEDIA_HEIGHT);
-        if ($width && $height) {
-            $this->setWidth($width);
-            $this->setHeight($height);
-        }
+        $this->setWidth($this->$videoWidth);
+        $this->setHeight($this->$videoHeight);
     }
 
-
+    /**
+     * Get embed code HTML
+     * @return string
+     */
     public function getHTML()
     {
         return '<iframe width="' . $this->width . '" height="' . $this->height . '" src="https://www.youtube.com/embed/' . $this->getId() . '" frameborder="0" allowfullscreen="true"></iframe>';
