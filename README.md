@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/thanhsm/mediaembed.svg?branch=master)](https://travis-ci.org/thanhsm/mediaembed)
+[![Code Climate](https://codeclimate.com/repos/552396dde30ba02fce005129/badges/912710602dc797400dcd/gpa.svg)](https://codeclimate.com/repos/552396dde30ba02fce005129/feed)
 [![Latest Stable Version](https://poser.pugx.org/thanhsm/mediaembed/v/stable.svg)](https://packagist.org/packages/thanhsm/mediaembed) [![Total Downloads](https://poser.pugx.org/thanhsm/mediaembed/downloads.svg)](https://packagist.org/packages/thanhsm/mediaembed) [![Latest Unstable Version](https://poser.pugx.org/thanhsm/mediaembed/v/unstable.svg)](https://packagist.org/packages/thanhsm/mediaembed) [![License](https://poser.pugx.org/thanhsm/mediaembed/license.svg)](https://packagist.org/packages/thanhsm/mediaembed)
 # Media Embed
 Mp3, NTC, Youtube media embed
