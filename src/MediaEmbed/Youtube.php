@@ -35,8 +35,8 @@ class Youtube extends Media
      */
     public function initSize()
     {
-        $this->setWidth($this->$videoWidth);
-        $this->setHeight($this->$videoHeight);
+        $this->setWidth($this->videoWidth);
+        $this->setHeight($this->videoHeight);
     }
 
     /**
